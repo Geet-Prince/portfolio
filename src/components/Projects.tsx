@@ -1,45 +1,12 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Star } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import Section from './Section';
 import { cn } from '../lib/utils';
-
-const projects = [
-  {
-    title: "Verse",
-    featured: true,
-    image: "/verse.jpg",
-    description: "Verse is a modern music streaming platform designed with a clean, Gen Z-inspired interface. It supports synchronized jam sessions, collaborative listening, personalized recommendations, wheel mode for discovering music, playlist sharing, offline capabilities, and seamless playback. The web platform serves as the landing page where users can explore features, download the Android app, and experience interactive demos.",
-    technologies: ["Spring Boot", "Firebase", "Media3", "Kotlin", "Java", "Android"],
-    links: [
-      { name: "GitHub Android", url: "https://github.com/OmkarMishra07/Verse", icon: FaGithub },
-      { name: "GitHub Web", url: "https://github.com/Geet-Prince/Verse-web", icon: FaGithub },
-      { name: "Live", url: "https://verse.geetprince.me/", icon: ExternalLink }
-    ]
-  },
-  {
-    title: "Progex",
-    featured: false,
-    image: "/progex.jpg",
-    description: "A competitive programming analytics and social platform built with a scalable application factory architecture. It helps developers track coding consistency, compete on live leaderboards, and follow personalized study plans using a real-time NoSQL database.",
-    technologies: ["Flask", "Python", "Firebase Firestore", "Docker", "REST APIs"],
-    links: [
-      { name: "GitHub", url: "https://github.com/Geet-Prince/progex", icon: FaGithub },
-      { name: "Live", url: "https://progex.geetprince.me/", icon: ExternalLink }
-    ]
-  },
-  {
-    title: "Eventify",
-    featured: false,
-    image: "/eventify.jpg",
-    description: "A secure event management platform successfully deployed across multiple college fests. It features dynamic QR code generation for attendee entry validation, automated PDF ticketing, and leverages a zero-cost Google Sheets backend via Service Accounts for real-time data access by non-technical staff.",
-    technologies: ["Flask", "Python", "Google Sheets API", "OAuth2", "Pandas", "QR Code"],
-    links: [
-      { name: "GitHub", url: "https://github.com/Geet-Prince/event-management-system", icon: FaGithub }
-    ]
-  }
-];
+import Image from 'next/image';
+import { projects } from '../data/projects';
 
 export default function Projects() {
   return (
@@ -66,13 +33,17 @@ export default function Projects() {
               index % 2 !== 0 && "md:flex-row-reverse"
             )}
           >
-            <div className="w-full md:w-3/5 rounded-3xl overflow-hidden bg-(--border-subtle) relative aspect-[16/10] md:aspect-video shadow-2xl transition-all duration-500 hover:shadow-3xl border border-(--border-subtle)">
+            <div className="w-full md:w-3/5 rounded-3xl overflow-hidden bg-(--border-subtle) relative shadow-2xl transition-all duration-500 hover:shadow-3xl border border-(--border-subtle)">
               <div className="absolute inset-0 bg-black/5 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
-              <img 
+              <Image 
                 src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
+                alt={`${project.title} Preview`}
+                width={800}
+                height={500}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 800px"
+                className="w-full h-auto object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-105 motion-reduce:transform-none"
+                priority={index === 0}
+                loading={index === 0 ? undefined : "lazy"}
               />
             </div>
             
@@ -107,9 +78,10 @@ export default function Projects() {
                       href={link.url} 
                       target="_blank" 
                       rel="noreferrer"
-                      className="group/link inline-flex items-center gap-2 text-sm font-medium text-(--fg) hover:text-(--accent) transition-colors"
+                      aria-label={`View ${link.name} for ${project.title}`}
+                      className="group/link inline-flex items-center gap-2 text-sm font-medium text-(--fg) hover:text-(--accent) transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent) focus-visible:outline-none rounded-md px-1 py-0.5 -mx-1"
                     >
-                      <Icon size={18} className="group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform duration-300" />
+                      <Icon size={18} className="motion-safe:group-hover/link:-translate-y-0.5 motion-safe:group-hover/link:translate-x-0.5 motion-safe:transition-transform motion-safe:duration-300 motion-reduce:transform-none" />
                       {link.name}
                     </a>
                   )

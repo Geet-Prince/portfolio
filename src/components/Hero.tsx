@@ -1,63 +1,12 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowDown, MapPin, Code2, BookOpen, Briefcase, ChevronRight } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Section from './Section';
-
-const codeSnippets = [
-`@RestController
-@RequestMapping("/api/music")
-public class MusicController {
-
-    @GetMapping("/songs")
-    public ResponseEntity<List<Song>> getSongs() {
-        return ResponseEntity.ok(service.findAll());
-    }
-
-}`,
-`class JamSessionManager(
-    private val firebase: FirebaseDatabase
-) {
-
-    suspend fun syncPlayback() {
-        // Synchronizing stream...
-        firebase.sync()
-    }
-
-}`,
-`@app.route("/api/analytics")
-def analytics():
-    stats = fetch_user_stats()
-    return jsonify(stats)`
-];
-
-const renderCodeLine = (line: string) => {
-  const tokenRegex = /(@\w+)|(class|public|private|fun|suspend|def|return)\b|(MusicController|JamSessionManager|ResponseEntity)\b|("(.*?)")|(getSongs|syncPlayback|analytics)\b/g;
-  const elements = [];
-  let lastIndex = 0;
-  let match;
-
-  while ((match = tokenRegex.exec(line)) !== null) {
-    if (match.index > lastIndex) {
-      elements.push(<span key={`text-${lastIndex}`}>{line.slice(lastIndex, match.index)}</span>);
-    }
-    
-    let colorClass = "";
-    if (match[1] || match[2]) colorClass = "text-[#c678dd]";
-    else if (match[3]) colorClass = "text-[#e5c07b]";
-    else if (match[4]) colorClass = "text-[#98c379]";
-    else if (match[6]) colorClass = "text-[#61afef]";
-
-    elements.push(<span key={`token-${match.index}`} className={colorClass}>{match[0]}</span>);
-    lastIndex = tokenRegex.lastIndex;
-  }
-
-  if (lastIndex < line.length) {
-    elements.push(<span key={`text-${lastIndex}`}>{line.slice(lastIndex)}</span>);
-  }
-
-  return elements.length > 0 ? elements : <span>{line}</span>;
-};
+import { renderCodeLine } from '../lib/syntax-parser';
+import { codeSnippets } from '../data/snippets';
+import { socials } from '../data/socials';
 
 export default function Hero() {
   const [snippetIndex, setSnippetIndex] = useState(0);
@@ -85,7 +34,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-5xl md:text-7xl font-extrabold tracking-tight text-(--fg)"
             >
-              Prince Raj<span className="text-(--accent)">.</span>
+              Prince Raj (geetprince)<span className="text-(--accent)">.</span>
             </motion.h1>
             
             <motion.p 
@@ -98,14 +47,14 @@ export default function Hero() {
             </motion.p>
           </div>
 
-          <motion.p 
+          <motion.article 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-lg text-(--muted) leading-relaxed max-w-lg"
           >
             Engineering reliable backend systems for modern digital products. Full-stack developer with a passion for scalable architecture and polished user experiences.
-          </motion.p>
+          </motion.article>
 
           {/* Personal Details Grid */}
           <motion.div 
@@ -141,17 +90,13 @@ export default function Hero() {
             <a 
               href="#projects" 
               aria-label="View Projects"
-              className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-(--fg) text-(--bg) font-semibold hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-(--fg) text-(--bg) font-semibold hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent) focus-visible:outline-none motion-reduce:transform-none"
             >
               View Projects
-              <ArrowDown size={16} className="group-hover:translate-y-0.5 transition-transform duration-300" />
+              <ArrowDown size={16} className="motion-safe:group-hover:translate-y-0.5 motion-safe:transition-transform motion-safe:duration-300" />
             </a>
             <div className="flex items-center gap-4 ml-4">
-              {[
-                { icon: FaGithub, href: "https://github.com/Geet-Prince/", label: "GitHub" },
-                { icon: FaLinkedin, href: "https://www.linkedin.com/in/geetprince/", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:prince.raj.ds@gmail.com", label: "Email" },
-              ].map((social, i) => {
+              {socials.map((social, i) => {
                 const Icon = social.icon;
                 return (
                   <a 
@@ -160,10 +105,10 @@ export default function Hero() {
                     target="_blank" 
                     rel="noreferrer" 
                     aria-label={social.label}
-                    className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300"
+                    className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent) focus-visible:outline-none rounded-md px-1 py-0.5"
                   >
-                    <Icon size={22} className="group-hover:scale-110 transition-transform duration-300" />
-                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-(--fg) text-(--bg) text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-md">
+                    <Icon size={22} className="motion-safe:group-hover:scale-110 motion-safe:transition-transform motion-safe:duration-300 motion-reduce:transform-none" />
+                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-(--fg) text-(--bg) text-xs rounded opacity-0 motion-safe:group-hover:opacity-100 motion-safe:transition-opacity motion-safe:duration-300 pointer-events-none whitespace-nowrap shadow-md">
                       {social.label}
                       <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-(--fg)"></span>
                     </span>
@@ -175,10 +120,10 @@ export default function Hero() {
                 target="_blank" 
                 rel="noreferrer" 
                 aria-label="LeetCode Profile"
-                className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300 font-bold text-lg leading-none flex items-center h-full pt-1"
+                className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300 font-bold text-lg leading-none flex items-center h-full pt-1 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent) focus-visible:outline-none rounded-md px-1"
               >
-                <span className="group-hover:scale-110 inline-block transition-transform duration-300">LC</span>
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-(--fg) text-(--bg) text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-md">
+                <span className="motion-safe:group-hover:scale-110 inline-block motion-safe:transition-transform motion-safe:duration-300 motion-reduce:transform-none">LC</span>
+                <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-(--fg) text-(--bg) text-xs rounded opacity-0 motion-safe:group-hover:opacity-100 motion-safe:transition-opacity motion-safe:duration-300 pointer-events-none whitespace-nowrap shadow-md">
                   LeetCode
                   <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-(--fg)"></span>
                 </span>
@@ -346,9 +291,9 @@ export default function Hero() {
                   ))}
                 </div>
                 
-                <a href="https://verse.geetprince.me/" target="_blank" rel="noreferrer" aria-label="Verse Live Demo" className="inline-flex items-center gap-1.5 text-xs font-semibold text-(--accent) group-hover/widget:text-(--fg) transition-colors">
+                <a href="https://verse.geetprince.me/" target="_blank" rel="noreferrer" aria-label="Verse Live Demo" className="inline-flex items-center gap-1.5 text-xs font-semibold text-(--accent) group-hover/widget:text-(--fg) transition-colors focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-(--accent) focus-visible:outline-none rounded-sm px-1 py-0.5 -mx-1">
                   Live Demo 
-                  <ChevronRight size={14} className="group-hover/widget:translate-x-1 transition-transform" />
+                  <ChevronRight size={14} className="motion-safe:group-hover/widget:translate-x-1 motion-safe:transition-transform" />
                 </a>
               </div>
             </motion.div>

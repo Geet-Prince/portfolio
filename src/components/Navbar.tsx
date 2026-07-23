@@ -6,6 +6,7 @@ import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
+import { navLinks } from '../data/navigation';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,14 +36,6 @@ export default function Navbar() {
   };
 
   const isDark = resolvedTheme === 'dark';
-
-  const navLinks = [
-    { name: 'Projects', href: '/#projects' },
-    { name: 'About', href: '/#about' },
-    { name: 'Experience', href: '/#experience' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/#contact' },
-  ];
 
   return (
     <header

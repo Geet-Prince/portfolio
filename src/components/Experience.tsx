@@ -1,15 +1,10 @@
+"use client";
 import React from 'react';
 import Section from './Section';
 import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 
-const timeline = [
-  { year: "2026", title: "Building Verse", active: true },
-  { year: "2025", title: "Built Eventify", active: false },
-  { year: "2025", title: "Built Progex", active: false },
-  { year: "2024", title: "Started Backend Development", active: false },
-  { year: "2023", title: "Started Computer Science Journey", active: false },
-];
+import { timeline } from '../data/experience';
 
 export default function Experience() {
   return (

@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Section from './Section';
 import { motion } from 'framer-motion';
@@ -27,7 +28,8 @@ export default function Contact() {
         >
           <a 
             href="mailto:prince.raj.ds@gmail.com"
-            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--fg) text-(--bg) font-medium hover:scale-105 transition-transform duration-300 shadow-xl"
+            aria-label="Email Me"
+            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--fg) text-(--bg) font-medium hover:-translate-y-1 transition-all duration-300 shadow-xl hover:shadow-2xl"
           >
             <Mail size={20} />
             Email Me
@@ -36,7 +38,8 @@ export default function Contact() {
             href="https://www.linkedin.com/in/geetprince/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--card) text-(--card-fg) border border-(--border-subtle) shadow-sm font-medium hover:border-(--accent) hover:shadow-md transition-all duration-300"
+            aria-label="LinkedIn Profile"
+            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--card) text-(--card-fg) border border-(--border-subtle) shadow-sm font-medium hover:border-(--accent) hover:-translate-y-1 hover:shadow-md transition-all duration-300"
           >
             <FaLinkedin size={20} />
             LinkedIn
@@ -45,7 +48,8 @@ export default function Contact() {
             href="https://github.com/Geet-Prince/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--card) text-(--card-fg) border border-(--border-subtle) shadow-sm font-medium hover:border-(--accent) hover:shadow-md transition-all duration-300"
+            aria-label="GitHub Profile"
+            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--card) text-(--card-fg) border border-(--border-subtle) shadow-sm font-medium hover:border-(--accent) hover:-translate-y-1 hover:shadow-md transition-all duration-300"
           >
             <FaGithub size={20} />
             GitHub
@@ -54,7 +58,8 @@ export default function Contact() {
             href="https://leetcode.com/u/geet-prince/"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--card) text-(--card-fg) border border-(--border-subtle) shadow-sm font-medium hover:border-(--accent) hover:shadow-md transition-all duration-300"
+            aria-label="LeetCode Profile"
+            className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-(--card) text-(--card-fg) border border-(--border-subtle) shadow-sm font-medium hover:border-(--accent) hover:-translate-y-1 hover:shadow-md transition-all duration-300"
           >
             <span className="font-bold">LC</span>
             LeetCode
