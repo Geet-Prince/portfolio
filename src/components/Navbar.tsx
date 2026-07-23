@@ -1,17 +1,19 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
 
-interface NavbarProps {
-  darkMode: boolean;
-  setDarkMode: (val: boolean) => void;
-}
-
-export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -19,12 +21,18 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleDarkMode = () => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  };
+
+  const isDark = resolvedTheme === 'dark';
+
   const navLinks = [
-    { name: 'Projects', href: '#projects' },
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Achievements', href: '#achievements' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'About', href: '/#about' },
+    { name: 'Experience', href: '/#experience' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -48,31 +56,38 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               className="text-sm font-medium text-(--muted) hover:text-(--fg) transition-colors relative group"
             >
               {link.name}
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-(--accent) transition-all duration-300 group-hover:w-full rounded-full"></span>
-            </a>
+            </Link>
           ))}
         </div>
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 text-(--muted) hover:text-(--fg) bg-(--card) border border-(--border-subtle) rounded-full hover:border-(--accent) hover:shadow-md transition-all duration-300"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={toggleDarkMode}
+          className="p-2 text-(--muted) hover:text-(--fg) bg-(--card) border border-(--border-subtle) rounded-full hover:border-(--accent) shadow-sm transition-all duration-200"
           aria-label="Toggle dark mode"
         >
-          <motion.div
-            initial={false}
-            animate={{ rotate: darkMode ? 180 : 0, scale: darkMode ? 1 : 1 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </motion.div>
+          <div className="relative w-[18px] h-[18px] flex items-center justify-center">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={mounted && isDark ? "dark" : "light"}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                {(mounted && isDark) ? <Sun size={18} /> : <Moon size={18} />}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </motion.button>
       </nav>
     </header>

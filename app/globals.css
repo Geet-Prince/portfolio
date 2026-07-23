@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-card-fg: var(--card-fg);
+  --color-surface: var(--surface);
+  --color-surface-fg: var(--surface-fg);
+  --color-surface-hover: var(--surface-hover);
+}
+
+@layer base {
+  :root {
+    --bg: #FAFAFA;
+    --fg: #111111;
+    --muted: #666666;
+    --border-subtle: #ECECEC;
+    --accent: #FF6B6B;
+    
+    --card: #FFFFFF;
+    --card-fg: #111111;
+    --surface: #F5F5F5;
+    --surface-fg: #111111;
+    --surface-hover: #EEEEEE;
+  }
+  
+  .dark {
+    --bg: #111111;
+    --fg: #FAFAFA;
+    --muted: #A0A0A0;
+    --border-subtle: #333333;
+    --accent: #FF6B6B;
+    
+    --card: #1A1A1A;
+    --card-fg: #FAFAFA;
+    --surface: #222222;
+    --surface-fg: #FAFAFA;
+    --surface-hover: #2A2A2A;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.15s ease-out, color 0.15s ease-out;
+    background-image: radial-gradient(circle at 1px 1px, var(--border-subtle) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  
+  /* Masking the dot grid slightly so it fades at the edges */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 40%, var(--bg) 100%);
+    z-index: -1;
+    transition: background 0.15s ease-out;
+  }
+  
+  /* Ultra-Premium Staggered Theme Transition */
+  /* Background changes first */
+  div, section, article, nav, header, footer {
+    transition: background-color 0.15s ease-out 0.02s, border-color 0.15s ease-out 0.04s, box-shadow 0.15s ease-out;
+  }
+
+  /* Typography and Icons swap slightly after */
+  a, button, p, h1, h2, h3, h4, h5, h6, span, svg, path {
+    transition: color 0.15s ease-out 0.02s, fill 0.15s ease-out 0.02s, stroke 0.15s ease-out 0.02s, opacity 0.15s ease-out;
+  }
+}
