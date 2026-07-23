@@ -31,6 +31,34 @@ def analytics():
     return jsonify(stats)`
 ];
 
+const renderCodeLine = (line: string) => {
+  const tokenRegex = /(@\w+)|(class|public|private|fun|suspend|def|return)\b|(MusicController|JamSessionManager|ResponseEntity)\b|("(.*?)")|(getSongs|syncPlayback|analytics)\b/g;
+  const elements = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = tokenRegex.exec(line)) !== null) {
+    if (match.index > lastIndex) {
+      elements.push(<span key={`text-${lastIndex}`}>{line.slice(lastIndex, match.index)}</span>);
+    }
+    
+    let colorClass = "";
+    if (match[1] || match[2]) colorClass = "text-[#c678dd]";
+    else if (match[3]) colorClass = "text-[#e5c07b]";
+    else if (match[4]) colorClass = "text-[#98c379]";
+    else if (match[6]) colorClass = "text-[#61afef]";
+
+    elements.push(<span key={`token-${match.index}`} className={colorClass}>{match[0]}</span>);
+    lastIndex = tokenRegex.lastIndex;
+  }
+
+  if (lastIndex < line.length) {
+    elements.push(<span key={`text-${lastIndex}`}>{line.slice(lastIndex)}</span>);
+  }
+
+  return elements.length > 0 ? elements : <span>{line}</span>;
+};
+
 export default function Hero() {
   const [snippetIndex, setSnippetIndex] = useState(0);
 
@@ -112,6 +140,7 @@ export default function Hero() {
           >
             <a 
               href="#projects" 
+              aria-label="View Projects"
               className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-(--fg) text-(--bg) font-semibold hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               View Projects
@@ -130,6 +159,7 @@ export default function Hero() {
                     href={social.href} 
                     target="_blank" 
                     rel="noreferrer" 
+                    aria-label={social.label}
                     className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300"
                   >
                     <Icon size={22} className="group-hover:scale-110 transition-transform duration-300" />
@@ -144,6 +174,7 @@ export default function Hero() {
                 href="https://leetcode.com/u/geet-prince/" 
                 target="_blank" 
                 rel="noreferrer" 
+                aria-label="LeetCode Profile"
                 className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300 font-bold text-lg leading-none flex items-center h-full pt-1"
               >
                 <span className="group-hover:scale-110 inline-block transition-transform duration-300">LC</span>
@@ -215,15 +246,7 @@ export default function Hero() {
                       >
                         {codeSnippets[snippetIndex].split('\n').map((line, i) => (
                           <div key={i} className="min-h-[1.5em]">
-                            {/* Simple Syntax Highlighting Hack */}
-                            <span dangerouslySetInnerHTML={{
-                              __html: line
-                                .replace(/(@\w+)/g, '<span class="text-[#c678dd]">$1</span>')
-                                .replace(/(class|public|private|fun|suspend|def|return)/g, '<span class="text-[#c678dd]">$1</span>')
-                                .replace(/(MusicController|JamSessionManager|ResponseEntity)/g, '<span class="text-[#e5c07b]">$1</span>')
-                                .replace(/("(.*?)")/g, '<span class="text-[#98c379]">$1</span>')
-                                .replace(/(getSongs|syncPlayback|analytics)/g, '<span class="text-[#61afef]">$1</span>')
-                            }} />
+                            {renderCodeLine(line)}
                             {/* Blinking Cursor at the end of the last line */}
                             {i === codeSnippets[snippetIndex].split('\n').length - 1 && (
                               <motion.span 
@@ -323,7 +346,7 @@ export default function Hero() {
                   ))}
                 </div>
                 
-                <a href="https://verse.geetprince.me/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-xs font-semibold text-(--accent) group-hover/widget:text-(--fg) transition-colors">
+                <a href="https://verse.geetprince.me/" target="_blank" rel="noreferrer" aria-label="Verse Live Demo" className="inline-flex items-center gap-1.5 text-xs font-semibold text-(--accent) group-hover/widget:text-(--fg) transition-colors">
                   Live Demo 
                   <ChevronRight size={14} className="group-hover/widget:translate-x-1 transition-transform" />
                 </a>
