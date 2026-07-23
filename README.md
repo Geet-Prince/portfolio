@@ -7,7 +7,7 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 
 A premium, highly polished developer portfolio crafted to showcase software engineering projects, technical expertise, and an unwavering commitment to scalable, robust application architecture.
 
@@ -34,11 +34,12 @@ This repository contains the source code for my personal developer portfolio. De
 - **Smooth Animations**: Hardware-accelerated transitions and micro-interactions powered by Framer Motion.
 - **Modern UI**: A meticulously crafted interface heavily inspired by industry leaders like Vercel and Linear.
 - **Featured Projects**: Detailed showcases of my best work (e.g., Verse, Progex, Eventify).
+- **Engineering Blog**: A built-in Markdown/React-based technical blog optimized for SEO.
 - **Skills Showcase**: Categorized technical arsenal highlighting backend, frontend, database, and core CS proficiency.
 - **Experience Timeline**: A clean, vertical timeline charting my educational and engineering journey.
 - **Contact Section**: Quick access to my social and professional profiles.
-- **Optimized Performance**: Strict adherence to Lighthouse auditing standards.
-- **SEO Friendly**: Semantic HTML structure and comprehensive meta tags.
+- **Optimized Performance**: Next.js Server-Side Rendering (SSR) ensures instantaneous loading and strict adherence to Lighthouse auditing standards.
+- **SEO Friendly**: Semantic HTML structure, comprehensive meta tags, Open Graph, and Schema.org JSON-LD structured data.
 - **Accessibility**: High contrast ratios and accessible interactive elements (WCAG compliant).
 
 ---
@@ -50,7 +51,7 @@ This repository contains the source code for my personal developer portfolio. De
 - TypeScript
 - Tailwind CSS
 - Framer Motion
-- Vite
+- Next.js (App Router)
 
 **Deployment**
 - Vercel
@@ -75,17 +76,19 @@ This repository contains the source code for my personal developer portfolio. De
 
 ```text
 portfolio/
-├── public/                 # Static assets (images, icons)
+├── app/
+│   ├── blog/               # SEO-optimized Engineering Blog routes
+│   ├── globals.css         # Global stylesheets and semantic CSS variables
+│   ├── layout.tsx          # Root HTML layout and comprehensive SEO Metadata
+│   └── page.tsx            # Main portfolio landing page
+├── public/                 # Static assets (images, icons, robots.txt, sitemap.xml)
 ├── src/
 │   ├── components/         # Reusable React UI components (Hero, About, Projects, etc.)
-│   ├── lib/                # Utility functions and helpers (e.g., clsx, tailwind-merge)
-│   ├── App.tsx             # Root application component and theme state
-│   ├── index.css           # Global stylesheets and semantic CSS variables
-│   └── main.tsx            # React entry point
+│   └── lib/                # Utility functions and helpers (e.g., clsx, tailwind-merge)
 ├── package.json            # Project dependencies and scripts
-├── tailwind.config.js      # Tailwind CSS configuration
-├── tsconfig.json           # TypeScript configuration
-└── vite.config.ts          # Vite bundler configuration
+├── postcss.config.mjs      # PostCSS config for Tailwind v4 integration
+├── next.config.mjs         # Next.js configuration
+└── tsconfig.json           # TypeScript configuration
 ```
 
 ---
@@ -122,8 +125,8 @@ To run this portfolio locally, follow these steps:
 This portfolio is engineered for speed and efficiency:
 - **Lighthouse Optimized**: Achieves consistent 95+ scores across Performance, Accessibility, and Best Practices.
 - **Responsive**: Fluid typography and fluid layouts ensure perfect rendering on any device.
-- **Fast Loading**: Utilizes Vite for lightning-fast HMR and highly optimized production builds.
-- **SEO Optimized**: Built with semantic HTML5 tags to ensure strong search engine visibility.
+- **Fast Loading**: Utilizes Next.js Server-Side Rendering (SSR) to deliver pre-rendered HTML instantly to the browser.
+- **SEO Optimized**: Built with semantic HTML5 tags, advanced JSON-LD structured data, and dynamic meta tags to ensure strong search engine visibility.
 
 ---
 
