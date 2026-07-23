@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 import { ThemeProvider } from "../src/components/ThemeProvider";
 import { ThemeSynchronizer } from "../src/components/ThemeSynchronizer";
+import SchemaRenderer from "../src/components/SchemaRenderer";
 
 import { cookies } from "next/headers";
 
@@ -20,21 +21,26 @@ export async function generateMetadata(): Promise<Metadata> {
   const isDark = theme === "dark";
 
   return {
-    title: "Prince Raj (Geet Prince) | Backend & Full Stack Software Engineer",
-    description: "Portfolio of Prince Raj (Geet Prince), a Backend and Full Stack Software Engineer based in Greater Noida, India.",
-    keywords: ["Prince Raj", "Geet Prince", "Software Engineer", "Backend Engineer"],
-    authors: [{ name: "Prince Raj" }],
+    metadataBase: new URL("https://geetprince.me/"),
+    title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
+    description: "Portfolio of Prince Raj (geetprince, geet-prince), a Backend and Full Stack Software Engineer specializing in scalable architecture and modern web experiences.",
+    keywords: ["Prince Raj", "geetprince", "geet-prince", "Software Engineer", "Data Scientist", "Backend Engineer", "Full Stack Developer"],
+    authors: [{ name: "Prince Raj", url: "https://geetprince.me/" }],
+    creator: "Prince Raj",
+    publisher: "Prince Raj",
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
     themeColor: isDark ? "#111111" : "#ffffff",
     openGraph: {
-      title: "Prince Raj | Backend & Full Stack Software Engineer",
-      description: "Portfolio of Prince Raj (Geet Prince). Discover scalable backend engineering solutions.",
+      title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
+      description: "Portfolio of Prince Raj (geetprince). Discover scalable backend engineering solutions and modern web applications.",
       url: "https://geetprince.me/",
-      siteName: "Prince Raj Portfolio",
+      siteName: "Prince Raj",
       images: [
         {
-          url: "https://geetprince.me/og-image.jpg",
+          url: "/og-image.jpg",
           width: 1200,
           height: 630,
+          alt: "Prince Raj - Software Engineer & Data Scientist"
         }
       ],
       locale: "en_US",
@@ -42,9 +48,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Prince Raj | Backend Engineer",
-      description: "Portfolio of Prince Raj (Geet Prince), Backend Engineer based in India.",
-      images: ["https://geetprince.me/og-image.jpg"],
+      title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
+      description: "Portfolio of Prince Raj (geetprince), Software Engineer based in India.",
+      images: ["/og-image.jpg"],
     },
     alternates: {
       canonical: "https://geetprince.me/",
@@ -73,7 +79,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={theme} suppressHydrationWarning>
-      <head />
+      <head>
+        <SchemaRenderer />
+      </head>
       <body className={`${inter.className} bg-(--bg) text-(--fg) min-h-screen font-sans selection:bg-(--accent)/30 selection:text-(--accent)`}>
         <ThemeProvider attribute="class" defaultTheme={theme} enableSystem={false} disableTransitionOnChange>
           <ThemeSynchronizer />
