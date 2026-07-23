@@ -10,16 +10,18 @@ import SchemaRenderer from "../src/components/SchemaRenderer";
 
 import { cookies } from "next/headers";
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
-
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateViewport(): Promise<Viewport> {
   const cookieStore = await cookies();
   const theme = cookieStore.get("theme")?.value || "dark";
   const isDark = theme === "dark";
+  return {
+    width: "device-width",
+    initialScale: 1,
+    themeColor: isDark ? "#111111" : "#ffffff",
+  };
+}
 
+export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL("https://geetprince.me/"),
     title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
@@ -29,7 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: "Prince Raj",
     publisher: "Prince Raj",
     robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-    themeColor: isDark ? "#111111" : "#ffffff",
     openGraph: {
       title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
       description: "Portfolio of Prince Raj (geetprince). Discover scalable backend engineering solutions and modern web applications.",

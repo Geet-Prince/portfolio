@@ -18,6 +18,14 @@ export default function SchemaRenderer() {
         ]
       },
       {
+        "@type": "ProfilePage",
+        "@id": "https://geetprince.me/#profile",
+        "url": "https://geetprince.me/",
+        "mainEntity": {
+          "@id": "https://geetprince.me/#person"
+        }
+      },
+      {
         "@type": "WebSite",
         "@id": "https://geetprince.me/#website",
         "url": "https://geetprince.me/",
