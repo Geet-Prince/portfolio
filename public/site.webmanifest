@@ -1,0 +1,15 @@
+{
+  "name": "Prince Raj (Geet Prince) Portfolio",
+  "short_name": "Prince Raj",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#111111",
+  "background_color": "#111111",
+  "display": "standalone",
+  "start_url": "/"
+}
