@@ -23,7 +23,7 @@ export default function Hero() {
       {/* Subtle Background Glow behind hero */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-tr from-(--accent)/10 via-transparent to-transparent rounded-full blur-[120px] opacity-30 pointer-events-none z-0"></div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center w-full z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 xl:gap-16 items-center w-full z-10">
         
         {/* Left Side: Storytelling & Personal Info */}
         <div className="flex flex-col space-y-8">
@@ -32,7 +32,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-extrabold tracking-tight text-(--fg)"
+              className="text-fluid-hero leading-[1.1] font-extrabold tracking-tight text-(--fg)"
             >
               Prince Raj (geetprince)<span className="text-(--accent)">.</span>
             </motion.h1>
@@ -41,7 +41,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-2xl md:text-3xl font-semibold text-(--fg) tracking-tight"
+              className="text-fluid-h3 font-semibold text-(--fg) tracking-tight"
             >
               I build software that feels as good as it performs.
             </motion.p>
@@ -51,7 +51,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg text-(--muted) leading-relaxed max-w-lg"
+            className="text-fluid-p text-(--muted) leading-relaxed max-w-xl"
           >
             Engineering reliable backend systems for modern digital products. Full-stack developer with a passion for scalable architecture and polished user experiences.
           </motion.article>

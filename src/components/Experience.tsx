@@ -10,7 +10,7 @@ export default function Experience() {
   return (
     <Section id="experience" className="py-24">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-(--fg) mb-16 text-center">
+        <h2 className="text-fluid-h2 font-bold tracking-tight text-(--fg) mb-16 text-center">
           Journey<span className="text-(--accent)">.</span>
         </h2>
 
@@ -37,12 +37,12 @@ export default function Experience() {
               
               <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
                 <span className={cn(
-                  "font-mono text-lg md:text-xl font-bold",
+                  "font-mono text-[clamp(1.125rem,2vw,1.25rem)] font-bold",
                   item.active ? "text-(--accent)" : "text-(--muted)"
                 )}>
                   {item.year}
                 </span>
-                <span className="text-xl md:text-2xl font-medium text-(--fg)">
+                <span className="text-fluid-h3 font-medium text-(--fg)">
                   {item.title}
                 </span>
               </div>

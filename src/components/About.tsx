@@ -12,7 +12,7 @@ export default function About() {
           About Me
         </h2>
         
-        <blockquote className="text-2xl md:text-4xl font-medium leading-tight md:leading-snug max-w-4xl text-(--card-fg)">
+        <blockquote className="text-[clamp(1.25rem,3vw+0.5rem,2.25rem)] font-medium leading-relaxed max-w-4xl text-(--card-fg)">
           "I enjoy building software that combines scalable backend systems with thoughtful user experiences. My interests span backend engineering, distributed systems, full-stack development, and data-driven products. I enjoy transforming ideas into reliable, high-performance applications."
         </blockquote>
         

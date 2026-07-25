@@ -17,7 +17,7 @@ export default function Achievements() {
   return (
     <Section id="achievements" className="py-24">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-(--fg)">
+        <h2 className="text-fluid-h2 font-bold tracking-tight text-(--fg)">
           Milestones<span className="text-(--accent)">.</span>
         </h2>
       </div>
@@ -38,7 +38,7 @@ export default function Achievements() {
                 <Icon size={24} />
               </div>
               <div>
-                <div className="text-3xl font-bold text-(--card-fg) mb-2">{stat.value}</div>
+                <div className="text-fluid-h3 font-bold text-(--card-fg) mb-2">{stat.value}</div>
                 <div className="text-sm font-medium text-(--muted)">{stat.label}</div>
               </div>
             </motion.div>
