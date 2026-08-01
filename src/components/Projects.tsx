@@ -55,6 +55,7 @@ export default function Projects() {
   const [sort, setSort] = useState("Recently Updated");
   const [loading, setLoading] = useState(true);
   const [activeProject, setActiveProject] = useState<any | null>(null);
+  const [showAllRepos, setShowAllRepos] = useState(false);
 
   // Prevent scroll when modal is open
   useEffect(() => {
@@ -290,7 +291,7 @@ export default function Projects() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredRepos.map((repo, i) => (
+            {(showAllRepos ? filteredRepos : filteredRepos.slice(0, 6)).map((repo, i) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -349,6 +350,17 @@ export default function Projects() {
               No repositories found matching your criteria.
             </div>
           )}
+        </div>
+      )}
+
+      {!loading && filteredRepos.length > 6 && (
+        <div className="mt-12 flex justify-center">
+          <button
+            onClick={() => setShowAllRepos(!showAllRepos)}
+            className="px-8 py-3 rounded-xl bg-(--surface) border border-(--border-subtle) hover:border-(--accent)/50 text-(--fg) hover:text-(--accent) font-bold transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-(--accent)"
+          >
+            {showAllRepos ? "Show Less" : `Load More Repositories (${filteredRepos.length - 6})`}
+          </button>
         </div>
       )}
 
