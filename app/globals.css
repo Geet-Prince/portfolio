@@ -23,32 +23,32 @@
 
 @layer base {
   :root {
-    /* Warmer Light Mode (Eye Comfort) */
-    --bg: #FDFBF7;
-    --fg: #2D2A26;
-    --muted: #79716B;
-    --border-subtle: #EBE8E0;
-    --accent: #FF6B6B;
+    /* Soft Sepia/Oatmeal Light Mode (Eye Comfort) */
+    --bg: #EAE3D9;        /* Soft, low-glare beige instead of bright white */
+    --fg: #3B342C;        /* Soft dark brown for text */
+    --muted: #82786D;
+    --border-subtle: #D8CEBE;
+    --accent: #F05B5B;    /* Slightly softened red accent */
     
-    --card: #FCF9F2;
-    --card-fg: #2D2A26;
-    --surface: #F6F3EC;
-    --surface-fg: #2D2A26;
-    --surface-hover: #EFEBE1;
+    --card: #F2EADF;      /* Slightly lighter beige for cards */
+    --card-fg: #3B342C;
+    --surface: #E0D7C9;   /* Slightly darker for surfaces */
+    --surface-fg: #3B342C;
+    --surface-hover: #D6CCBE;
   }
   
   .dark {
     /* Warmer Dark Mode (Eye Comfort) */
     --bg: #181614;
-    --fg: #EFECE6;
-    --muted: #9C958E;
+    --fg: #EFE4D3; /* Soft cream color instead of pure white */
+    --muted: #A39B92;
     --border-subtle: #322E2A;
     --accent: #FF6B6B;
     
     --card: #1F1D1B;
-    --card-fg: #EFECE6;
+    --card-fg: #EFE4D3;
     --surface: #262320;
-    --surface-fg: #EFECE6;
+    --surface-fg: #EFE4D3;
     --surface-hover: #2D2A26;
   }
 
