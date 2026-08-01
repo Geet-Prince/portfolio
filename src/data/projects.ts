@@ -42,16 +42,6 @@ export const projects: readonly Project[] = [
     ]
   },
   {
-    title: "Academia Pro",
-    featured: false,
-    image: "/academia-pro.jpg",
-    description: "A robust college and student management portal that streamlines academic tracking, attendance, and grading. Built to handle secure authentication and high-throughput data access for thousands of student records.",
-    technologies: ["Node.js", "Express", "MongoDB", "React", "REST"],
-    links: [
-      { name: "GitHub", url: "https://github.com/Geet-Prince/academia-pro", icon: FaGithub }
-    ]
-  },
-  {
     title: "Eventify",
     featured: false,
     image: "/eventify.jpg",

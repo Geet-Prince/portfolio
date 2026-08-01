@@ -45,14 +45,6 @@ export default function SchemaRenderer() {
       },
       {
         "@type": "SoftwareSourceCode",
-        "@id": "https://geetprince.me/#academiapro",
-        "name": "Academia Pro",
-        "author": { "@id": "https://geetprince.me/#person" },
-        "description": "A robust college and student management portal.",
-        "programmingLanguage": ["Node.js", "Express", "MongoDB", "React"]
-      },
-      {
-        "@type": "SoftwareSourceCode",
         "@id": "https://geetprince.me/#eventify",
         "name": "Eventify",
         "author": { "@id": "https://geetprince.me/#person" },
