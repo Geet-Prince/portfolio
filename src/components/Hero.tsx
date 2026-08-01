@@ -3,20 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowDown, MapPin, Code2, BookOpen, Briefcase, ChevronRight } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 import Section from './Section';
 import { renderCodeLine } from '../lib/syntax-parser';
 import { codeSnippets } from '../data/snippets';
 import { socials } from '../data/socials';
 
 export default function Hero() {
-  const [snippetIndex, setSnippetIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSnippetIndex((prev) => (prev + 1) % codeSnippets.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+  const [activeTab, setActiveTab] = useState<'verse' | 'music'>('verse');
 
   return (
     <Section id="hero" className="min-h-screen flex flex-col justify-center pt-32 pb-16 relative">
@@ -120,9 +114,9 @@ export default function Hero() {
                 target="_blank" 
                 rel="noreferrer" 
                 aria-label="LeetCode Profile"
-                className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300 font-bold text-lg leading-none flex items-center h-full pt-1 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent) focus-visible:outline-none rounded-md px-1"
+                className="group relative text-(--muted) hover:text-(--fg) transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent) focus-visible:outline-none rounded-md px-1 py-0.5"
               >
-                <span className="motion-safe:group-hover:scale-110 inline-block motion-safe:transition-transform motion-safe:duration-300 motion-reduce:transform-none">LC</span>
+                <SiLeetcode size={22} className="motion-safe:group-hover:scale-110 motion-safe:transition-transform motion-safe:duration-300 motion-reduce:transform-none" />
                 <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-(--fg) text-(--bg) text-xs rounded opacity-0 motion-safe:group-hover:opacity-100 motion-safe:transition-opacity motion-safe:duration-300 pointer-events-none whitespace-nowrap shadow-md">
                   LeetCode
                   <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-(--fg)"></span>
@@ -163,46 +157,69 @@ export default function Hero() {
                     <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></div>
                     <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></div>
                   </div>
-                  <div className="flex gap-4">
-                    <span className="text-gray-200 bg-[#1E1E1E] px-3 py-1 -mb-2 rounded-t-md border-t border-x border-[#333] z-10 flex items-center gap-1.5">
+                  <div className="flex gap-1">
+                    <button 
+                      onClick={() => setActiveTab('verse')}
+                      className={`px-3 py-1.5 -mb-2 rounded-t-md border-t border-x flex items-center gap-1.5 transition-colors focus:outline-none ${activeTab === 'verse' ? 'bg-[#1E1E1E] text-gray-200 border-[#333] z-10' : 'bg-transparent text-gray-500 border-transparent hover:bg-[#2A2D2E]'}`}
+                    >
                       <span className="text-[#519aba]">☕</span> Verse.kt
-                    </span>
-                    <span className="py-1 flex items-center gap-1.5 opacity-50">
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab('music')}
+                      className={`px-3 py-1.5 -mb-2 rounded-t-md border-t border-x flex items-center gap-1.5 transition-colors focus:outline-none ${activeTab === 'music' ? 'bg-[#1E1E1E] text-gray-200 border-[#333] z-10' : 'bg-transparent text-gray-500 border-transparent hover:bg-[#2A2D2E]'}`}
+                    >
                       <span className="text-[#e37933]">🐘</span> MusicController.java
-                    </span>
+                    </button>
                   </div>
                 </div>
                 
                 {/* VS Code Editor Area */}
                 <div className="flex-1 p-4 font-mono text-[11px] md:text-xs leading-loose text-gray-300 overflow-hidden relative">
                   <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#1E1E1E] border-r border-[#333] flex flex-col items-center py-4 text-gray-600 select-none">
-                    {[...Array(12)].map((_, i) => <div key={i}>{i+1}</div>)}
+                    {[...Array(9)].map((_, i) => <div key={i}>{i+1}</div>)}
                   </div>
                   
                   <div className="pl-6 w-full h-full relative">
                     <AnimatePresence mode="wait">
-                      <motion.div
-                        key={snippetIndex}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.5 }}
-                        className="whitespace-pre-wrap"
-                      >
-                        {codeSnippets[snippetIndex].split('\n').map((line, i) => (
-                          <div key={i} className="min-h-[1.5em]">
-                            {renderCodeLine(line)}
-                            {/* Blinking Cursor at the end of the last line */}
-                            {i === codeSnippets[snippetIndex].split('\n').length - 1 && (
-                              <motion.span 
-                                animate={{ opacity: [1, 0] }}
-                                transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-                                className="inline-block w-1.5 h-3.5 bg-gray-400 ml-1 translate-y-0.5"
-                              />
-                            )}
-                          </div>
-                        ))}
-                      </motion.div>
+                      {activeTab === 'verse' ? (
+                        <motion.div
+                          key="verse"
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.2 }}
+                          className="whitespace-pre-wrap font-mono"
+                        >
+                          <div><span className="text-[#c678dd]">class</span> <span className="text-[#e5c07b]">JamSessionManager</span>(</div>
+                          <div>    <span className="text-[#c678dd]">private val</span> firebase: <span className="text-[#e5c07b]">FirebaseDatabase</span></div>
+                          <div>) {"{"}</div>
+                          <br/>
+                          <div>    <span className="text-[#c678dd]">suspend fun</span> <span className="text-[#61afef]">syncPlayback</span>() {"{"}</div>
+                          <div>        <span className="text-gray-500 italic">// Synchronizing stream across devices...</span></div>
+                          <div>        firebase.<span className="text-[#61afef]">sync</span>()</div>
+                          <div>    {"}"}</div>
+                          <div>{"}"}<motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }} className="inline-block w-1.5 h-3 bg-gray-400 ml-1 translate-y-0.5" /></div>
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="music"
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.2 }}
+                          className="whitespace-pre-wrap font-mono"
+                        >
+                          <div><span className="text-[#e5c07b]">@RestController</span></div>
+                          <div><span className="text-[#e5c07b]">@RequestMapping</span>(<span className="text-[#98c379]">"/api/music"</span>)</div>
+                          <div><span className="text-[#c678dd]">public class</span> <span className="text-[#e5c07b]">MusicController</span> {"{"}</div>
+                          <br/>
+                          <div>    <span className="text-[#e5c07b]">@GetMapping</span>(<span className="text-[#98c379]">"/songs"</span>)</div>
+                          <div>    <span className="text-[#c678dd]">public</span> <span className="text-[#e5c07b]">ResponseEntity</span>&lt;List&lt;Song&gt;&gt; <span className="text-[#61afef]">getSongs</span>() {"{"}</div>
+                          <div>        <span className="text-[#c678dd]">return</span> ResponseEntity.<span className="text-[#61afef]">ok</span>(service.<span className="text-[#61afef]">findAll</span>());</div>
+                          <div>    {"}"}</div>
+                          <div>{"}"}<motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }} className="inline-block w-1.5 h-3 bg-gray-400 ml-1 translate-y-0.5" /></div>
+                        </motion.div>
+                      )}
                     </AnimatePresence>
                   </div>
                 </div>
@@ -238,14 +255,16 @@ export default function Hero() {
               <div className="w-6 h-10 bg-(--surface) border border-(--border-subtle) rounded-full shadow-sm mt-8 transform rotate-12"></div>
             </div>
             
-            {/* Live Product Status Badges */}
             <div className="absolute -right-8 top-12 flex flex-col gap-3 pointer-events-none z-30">
               <motion.div 
                 animate={{ y: [0, -3, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="px-3 py-1.5 rounded-full bg-(--card)/90 backdrop-blur-md border border-(--border-subtle) shadow-md flex items-center gap-2 text-[10px] font-medium text-(--card-fg)"
               >
-                <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                <div className="relative w-2 h-2 flex items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-orange-500 animate-ping opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-orange-500"></span>
+                </div>
                 Firebase Connected
               </motion.div>
               <motion.div 
@@ -253,7 +272,10 @@ export default function Hero() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 className="px-3 py-1.5 rounded-full bg-(--card)/90 backdrop-blur-md border border-(--border-subtle) shadow-md flex items-center gap-2 text-[10px] font-medium text-(--card-fg)"
               >
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <div className="relative w-2 h-2 flex items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 animate-ping opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+                </div>
                 Spring Boot Running
               </motion.div>
               <motion.div 
@@ -261,7 +283,10 @@ export default function Hero() {
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="px-3 py-1.5 rounded-full bg-(--card)/90 backdrop-blur-md border border-(--border-subtle) shadow-md flex items-center gap-2 text-[10px] font-medium text-(--card-fg)"
               >
-                <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                <div className="relative w-2 h-2 flex items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-blue-500 animate-ping opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
+                </div>
                 Jam Session Active
               </motion.div>
             </div>
