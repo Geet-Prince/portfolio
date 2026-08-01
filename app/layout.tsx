@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL("https://geetprince.me/"),
-    title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
+    title: "Prince Raj | Software Engineer & Data Scientist",
     description: "Portfolio of Prince Raj (geetprince, geet-prince), a Backend and Full Stack Software Engineer specializing in scalable architecture and modern web experiences.",
     keywords: ["Prince Raj", "geetprince", "geet-prince", "Software Engineer", "Data Scientist", "Backend Engineer", "Full Stack Developer"],
     authors: [{ name: "Prince Raj", url: "https://geetprince.me/" }],

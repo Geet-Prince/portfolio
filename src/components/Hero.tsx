@@ -34,7 +34,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-fluid-hero leading-[1.1] font-extrabold tracking-tight text-(--fg)"
             >
-              Prince Raj (geetprince)<span className="text-(--accent)">.</span>
+              Prince Raj<span className="text-(--accent)">.</span>
             </motion.h1>
             
             <motion.p 

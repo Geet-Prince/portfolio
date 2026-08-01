@@ -20,7 +20,7 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 auto-rows-fr">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
         {projects.map((project, index) => (
           <motion.div 
             key={project.title}
@@ -35,10 +35,9 @@ export default function Projects() {
               <Image 
                 src={project.image} 
                 alt={`${project.title} Preview`}
-                width={600}
-                height={338}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                className="w-full h-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-105 motion-reduce:transform-none"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className="object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-105 motion-reduce:transform-none"
                 priority={index === 0}
                 loading={index === 0 ? undefined : "lazy"}
               />
@@ -51,7 +50,7 @@ export default function Projects() {
             </div>
             
             <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-fluid-h3 font-bold tracking-tight text-(--fg) mb-3 line-clamp-1">{project.title}</h3>
+              <h3 className="text-fluid-h3 font-bold tracking-tight text-(--fg) mb-3">{project.title}</h3>
               
               <div className="text-(--muted) text-sm leading-relaxed mb-6 flex-grow line-clamp-3 group-hover:line-clamp-none transition-all duration-300">
                 {project.description}
