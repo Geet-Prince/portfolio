@@ -22,6 +22,10 @@ export async function generateViewport(): Promise<Viewport> {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const theme = cookieStore.get("theme")?.value || "dark";
+  const isDark = theme === "dark";
+
   return {
     metadataBase: new URL("https://geetprince.me/"),
     title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
