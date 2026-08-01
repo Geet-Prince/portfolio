@@ -45,11 +45,11 @@ export default function SchemaRenderer() {
       },
       {
         "@type": "SoftwareSourceCode",
-        "@id": "https://geetprince.me/#eventify",
-        "name": "Eventify",
+        "@id": "https://geetprince.me/#verse",
+        "name": "Verse",
         "author": { "@id": "https://geetprince.me/#person" },
-        "description": "A secure event management platform with dynamic QR code generation.",
-        "programmingLanguage": ["Flask", "Python", "Pandas"]
+        "description": "A collaborative music streaming platform with real-time playback synchronization.",
+        "programmingLanguage": ["Kotlin", "Java", "Firebase"]
       }
     ]
   };

@@ -4,6 +4,7 @@ import Section from './Section';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 export default function Contact() {
   return (
@@ -61,7 +62,7 @@ export default function Contact() {
             aria-label="LeetCode Profile"
             className="flex items-center justify-center gap-2 px-6 sm:px-8 py-4 rounded-2xl bg-(--card) text-(--card-fg) border border-(--border-subtle) shadow-sm font-medium hover:border-(--accent) hover:-translate-y-1 hover:shadow-md transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent) focus-visible:outline-none"
           >
-            <span className="font-bold">LC</span>
+            <SiLeetcode size={20} />
             LeetCode
           </a>
         </motion.div>
