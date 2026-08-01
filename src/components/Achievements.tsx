@@ -15,14 +15,14 @@ const stats = [
 
 export default function Achievements() {
   return (
-    <Section id="achievements" className="py-24">
+    <div id="achievements" className="h-full scroll-mt-24">
       <div className="text-center mb-16">
         <h2 className="text-fluid-h2 font-bold tracking-tight text-(--fg)">
           Milestones<span className="text-(--accent)">.</span>
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-16">
         {stats.map((stat, idx) => {
           const Icon = stat.icon;
           return (
@@ -79,6 +79,6 @@ export default function Achievements() {
           </div>
         </a>
       </motion.div>
-    </Section>
+    </div>
   );
 }

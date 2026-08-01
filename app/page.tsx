@@ -16,10 +16,16 @@ export default function Home() {
       <main className="flex flex-col items-center">
         <Hero />
         <About />
-        <Experience />
+        
+        <section className="w-full max-w-7xl mx-auto px-6 py-24 md:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12">
+            <Experience />
+            <Achievements />
+          </div>
+        </section>
+        
         <Skills />
         <Projects />
-        <Achievements />
         <Contact />
       </main>
       <Footer />

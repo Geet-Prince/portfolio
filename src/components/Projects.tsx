@@ -54,6 +54,17 @@ export default function Projects() {
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("Recently Updated");
   const [loading, setLoading] = useState(true);
+  const [activeProject, setActiveProject] = useState<any | null>(null);
+
+  // Prevent scroll when modal is open
+  useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [activeProject]);
 
   useEffect(() => {
     fetch('https://api.github.com/users/Geet-Prince/repos?per_page=100&sort=updated')
@@ -129,7 +140,7 @@ export default function Projects() {
       </div>
 
       {/* Featured Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-8 lg:gap-10 mb-32 auto-rows-fr">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-32 auto-rows-fr">
         {projects.map((project, index) => (
           <motion.div 
             key={project.title}
@@ -171,9 +182,15 @@ export default function Projects() {
             <div className="p-8 flex flex-col flex-grow relative z-20 bg-(--card)/40 backdrop-blur-lg">
               <h3 className="text-2xl lg:text-3xl font-extrabold tracking-tight text-(--fg) mb-4 group-hover:text-(--accent) transition-colors">{project.title}</h3>
               
-              <div className="text-(--muted) text-base leading-relaxed mb-8 flex-grow font-medium">
+              <div className="text-(--muted) text-sm leading-relaxed mb-4 flex-grow font-medium line-clamp-2">
                 {project.description}
               </div>
+              <button 
+                onClick={() => setActiveProject(project)} 
+                className="text-(--accent) text-sm font-bold mb-6 hover:underline self-start transition-colors"
+              >
+                View Architecture
+              </button>
               
               <div className="flex flex-wrap gap-2 mb-8 mt-auto">
                 {project.technologies.map(tech => (
@@ -334,6 +351,87 @@ export default function Projects() {
           )}
         </div>
       )}
+
+      {/* View Architecture Modal */}
+      <AnimatePresence>
+        {activeProject && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveProject(null)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-3xl bg-(--card) border border-(--border-subtle) rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+            >
+              <div className="relative h-48 sm:h-64 w-full shrink-0">
+                <Image 
+                  src={activeProject.image} 
+                  alt={activeProject.title} 
+                  fill 
+                  className="object-cover" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-(--card) to-transparent" />
+                <button 
+                  onClick={() => setActiveProject(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black text-white rounded-full flex items-center justify-center transition-colors border border-white/20"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <div className="p-6 sm:p-8 overflow-y-auto">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="px-3 py-1 bg-(--accent)/10 text-(--accent) text-xs font-bold rounded-full">{activeProject.category}</span>
+                </div>
+                <h3 className="text-3xl font-extrabold text-(--fg) mb-6">{activeProject.title} Architecture</h3>
+                
+                <div className="prose prose-invert max-w-none text-(--muted) font-medium mb-8">
+                  {activeProject.description}
+                </div>
+                
+                <h4 className="text-sm font-bold text-(--fg) uppercase tracking-wider mb-4">Tech Stack & Infrastructure</h4>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {activeProject.technologies.map((tech: string) => (
+                    <span key={tech} className="px-3 py-1.5 bg-(--surface) text-(--fg) border border-(--border-subtle) rounded-lg text-sm font-bold shadow-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4">
+                  {activeProject.links.map((link: any) => {
+                    const Icon = link.icon;
+                    const isLive = link.name === "Live";
+                    return (
+                      <a 
+                        key={link.name} 
+                        href={link.url} 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className={cn(
+                          "inline-flex items-center gap-2 text-sm font-bold transition-all rounded-xl px-6 py-3 shadow-sm",
+                          isLive 
+                            ? "bg-(--accent) text-white hover:bg-(--accent)/90 hover:shadow-md" 
+                            : "bg-(--surface) text-(--fg) border border-(--border-subtle) hover:border-(--accent)/50 hover:bg-(--surface-hover)"
+                        )}
+                      >
+                        <Icon size={18} />
+                        {link.name}
+                      </a>
+                    )
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </Section>
   );

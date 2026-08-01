@@ -8,7 +8,7 @@ import { timeline } from '../data/experience';
 
 export default function Experience() {
   return (
-    <Section id="experience" className="py-24">
+    <div id="experience" className="h-full scroll-mt-24">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-fluid-h2 font-bold tracking-tight text-(--fg) mb-16 text-center">
           Journey<span className="text-(--accent)">.</span>
@@ -50,6 +50,6 @@ export default function Experience() {
           ))}
         </div>
       </div>
-    </Section>
+    </div>
   );
 }

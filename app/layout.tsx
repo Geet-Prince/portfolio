@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { ThemeProvider } from "../src/components/ThemeProvider";
 import { ThemeSynchronizer } from "../src/components/ThemeSynchronizer";
 import SchemaRenderer from "../src/components/SchemaRenderer";
+import BackToTop from "../src/components/BackToTop";
 
 import { cookies } from "next/headers";
 
@@ -91,6 +92,7 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme={theme} enableSystem={false} disableTransitionOnChange>
           <ThemeSynchronizer />
           {children}
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>
