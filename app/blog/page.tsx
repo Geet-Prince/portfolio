@@ -5,30 +5,55 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Blog | Prince Raj - Engineering Insights",
-  description: "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+  title: "Engineering Blog | Prince Raj",
+  description:
+    "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+  alternates: {
+    canonical: "https://geetprince.me/blog",
+  },
+  openGraph: {
+    title: "Engineering Blog | Prince Raj",
+    description:
+      "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+    url: "https://geetprince.me/blog",
+    siteName: "Prince Raj",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Engineering Blog | Prince Raj",
+    description:
+      "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+  },
 };
 
 const posts = [
   {
-    slug: "scaling-verse-music-sync",
-    title: "How I scaled Verse Music Sync using Firebase",
-    date: "July 24, 2026",
-    excerpt: "Deep dive into the architecture behind synchronized real-time playback across multiple devices using Firebase Realtime Database and Media3.",
-    readTime: "8 min read"
+    slug: "progex-competitive-analytics",
+    title: "Progex: Competitive Programming Analytics",
+    date: "August 25, 2026",
+    excerpt: "A robust Flask application offering analytics for competitive programmers, deployed via Docker and Render.",
+    readTime: "5 min read"
   },
   {
-    slug: "building-competitive-programming-analytics",
-    title: "Building a Live Leaderboard for Competitive Programming",
-    date: "July 10, 2026",
-    excerpt: "Why I chose Firestore over PostgreSQL for real-time analytics in Progex, and the architectural trade-offs involved.",
+    slug: "building-verse-music-player",
+    title: "Building Verse: A Real-time Jamming Music Player",
+    date: "August 20, 2026",
+    excerpt: "Developing a modern Android music player featuring a classic iPod-style click wheel and real-time synchronized playback.",
+    readTime: "7 min read"
+  },
+  {
+    slug: "comprehensive-sql-journey",
+    title: "My Comprehensive Journey Through SQL",
+    date: "August 15, 2026",
+    excerpt: "Over 40 documented SQL scripts ranging from basic queries to advanced window functions.",
     readTime: "6 min read"
   },
   {
-    slug: "zero-cost-event-management",
-    title: "Zero-Cost Event Management Backend with Google Sheets",
-    date: "June 15, 2026",
-    excerpt: "A practical guide to leveraging Google Sheets API and OAuth2 as a free, non-technical-friendly database for college fests.",
+    slug: "mastering-java-fundamentals",
+    title: "Mastering Java from Scratch",
+    date: "August 10, 2026",
+    excerpt: "A structured journey through Java fundamentals, covering core concepts, build tools, and testing.",
     readTime: "5 min read"
   }
 ];
