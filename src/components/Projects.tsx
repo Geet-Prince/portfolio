@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Star, Search, GitFork, BookOpen, Code2, Folder, Calendar, Github, Shield } from 'lucide-react';
+import { ExternalLink, Star, Search, GitFork, BookOpen, Code2, Folder, Calendar, Shield } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import Section from './Section';
 import Image from 'next/image';
