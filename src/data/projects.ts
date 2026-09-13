@@ -23,7 +23,7 @@ export const projects: readonly Project[] = [
     title: "Verse",
     category: "Android",
     featured: true,
-    image: "/verse.jpg",
+    image: "/verse.webp",
     description: "Collaborative music streaming application built with Kotlin, Firebase, MVVM, ExoPlayer, and Material Design.",
     technologies: ["Kotlin", "Firebase", "MVVM", "ExoPlayer", "Material Design"],
     links: [
@@ -35,7 +35,7 @@ export const projects: readonly Project[] = [
     title: "Progex",
     category: "Web",
     featured: true,
-    image: "/progex.jpg",
+    image: "/progex.webp",
     description: "Competitive programming companion featuring coding statistics, DSA roadmap, friend comparisons, progress tracking, and productivity tools.",
     technologies: ["HTML", "CSS", "JavaScript", "Flask", "Firebase"],
     links: [
@@ -47,7 +47,7 @@ export const projects: readonly Project[] = [
     title: "Portfolio",
     category: "Web",
     featured: true,
-    image: "/portfolio.jpg",
+    image: "/portfolio.webp",
     description: "Personal developer portfolio built with Next.js, TypeScript, Tailwind CSS, Framer Motion, and modern responsive UI.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     links: [
@@ -59,7 +59,7 @@ export const projects: readonly Project[] = [
     title: "My SQL Journey",
     category: "Database",
     featured: true,
-    image: "/sql.jpg",
+    image: "/sql.webp",
     description: "Comprehensive SQL repository covering beginner to advanced concepts including joins, window functions, CTEs, stored procedures, and interview questions.",
     technologies: ["SQL", "MySQL"],
     links: [
@@ -70,7 +70,7 @@ export const projects: readonly Project[] = [
     title: "Nexus Tasks",
     category: "Full Stack",
     featured: true,
-    image: "/nexus.jpg",
+    image: "/nexus.webp",
     description: "Task management application built using Core Java, REST APIs, HTML, CSS, and JavaScript without heavy frameworks.",
     technologies: ["Core Java", "REST API", "HTML", "CSS", "JavaScript"],
     links: [
