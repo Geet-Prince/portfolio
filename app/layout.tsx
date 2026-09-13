@@ -10,6 +10,7 @@ import SchemaRenderer from "../src/components/SchemaRenderer";
 import BackToTop from "../src/components/BackToTop";
 
 import { cookies } from "next/headers";
+import { Analytics } from "@vercel/analytics/next";
 
 export async function generateViewport(): Promise<Viewport> {
   const cookieStore = await cookies();
@@ -94,6 +95,7 @@ export default async function RootLayout({
           {children}
           <BackToTop />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
