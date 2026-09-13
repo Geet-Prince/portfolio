@@ -36,7 +36,17 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: "Prince Raj", url: "https://geetprince.me/" }],
     creator: "Prince Raj",
     publisher: "Prince Raj",
-    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+        'max-video-preview': -1,
+      },
+    },
     openGraph: {
       title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
       description: "Portfolio of Prince Raj (geetprince). Discover scalable backend engineering solutions and modern web applications.",

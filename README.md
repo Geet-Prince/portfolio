@@ -17,7 +17,7 @@ A premium, highly polished developer portfolio crafted to showcase software engi
 
 ## 🌐 Live Website
 
-**[🔗 View Live Portfolio Here](https://princeraj.dev)** *(Placeholder - Update with actual Vercel/Netlify URL)*
+**[🔗 View Live Portfolio](https://geetprince.me)**
 
 ---
 
@@ -78,17 +78,23 @@ This repository contains the source code for my personal developer portfolio. De
 portfolio/
 ├── app/
 │   ├── blog/               # SEO-optimized Engineering Blog routes
+│   │   ├── [slug]/         # Dynamic blog post pages with per-post metadata + Article JSON-LD
+│   │   └── page.tsx        # Blog index with canonical, OG, Twitter metadata
 │   ├── globals.css         # Global stylesheets and semantic CSS variables
-│   ├── layout.tsx          # Root HTML layout and comprehensive SEO Metadata
-│   └── page.tsx            # Main portfolio landing page
-├── public/                 # Static assets (images, icons, robots.txt, sitemap.xml)
+│   ├── layout.tsx          # Root HTML layout, comprehensive metadata, Vercel Analytics
+│   ├── page.tsx            # Main portfolio landing page
+│   ├── robots.ts           # Dynamic robots.txt (single source of truth)
+│   └── sitemap.ts          # Dynamic sitemap covering all routes
+├── public/                 # Static assets (images, icons, favicons, site.webmanifest)
 ├── src/
 │   ├── components/         # Reusable React UI components (Hero, About, Projects, etc.)
-│   └── lib/                # Utility functions and helpers (e.g., clsx, tailwind-merge)
+│   │   └── SchemaRenderer.tsx  # Person + ProfilePage + WebSite JSON-LD structured data
+│   ├── data/               # Static data (projects, skills, experience, navigation)
+│   └── lib/                # Utility functions (clsx, tailwind-merge)
 ├── package.json            # Project dependencies and scripts
 ├── postcss.config.mjs      # PostCSS config for Tailwind v4 integration
 ├── next.config.mjs         # Next.js configuration
-└── tsconfig.json           # TypeScript configuration
+└── tsconfig.json           # TypeScript configuration (canonical Next.js config)
 ```
 
 ---

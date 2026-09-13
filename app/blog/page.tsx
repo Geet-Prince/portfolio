@@ -5,8 +5,26 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Blog | Prince Raj - Engineering Insights",
-  description: "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+  title: "Engineering Blog | Prince Raj",
+  description:
+    "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+  alternates: {
+    canonical: "https://geetprince.me/blog",
+  },
+  openGraph: {
+    title: "Engineering Blog | Prince Raj",
+    description:
+      "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+    url: "https://geetprince.me/blog",
+    siteName: "Prince Raj",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Engineering Blog | Prince Raj",
+    description:
+      "Technical articles on backend engineering, scalable systems, React, and software architecture by Prince Raj.",
+  },
 };
 
 const posts = [
