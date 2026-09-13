@@ -2,11 +2,11 @@ import { MetadataRoute } from 'next';
 
 const BASE_URL = 'https://geetprince.me';
 
-// Keep blog slugs in one place — mirrors the posts array in app/blog/page.tsx
 const blogSlugs = [
-  'scaling-verse-music-sync',
-  'building-competitive-programming-analytics',
-  'zero-cost-event-management',
+  'progex-competitive-analytics',
+  'building-verse-music-player',
+  'comprehensive-sql-journey',
+  'mastering-java-fundamentals',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

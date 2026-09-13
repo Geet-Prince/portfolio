@@ -8,79 +8,82 @@ import { ArrowLeft } from "lucide-react";
 
 const BASE_URL = "https://geetprince.me";
 
-// ─── Single source of truth for all blog posts ────────────────────────────────
 type Post = {
   title: string;
   excerpt: string;
-  date: string;        // ISO 8601 for schema
-  dateDisplay: string; // human-readable for UI
+  date: string;
+  dateDisplay: string;
   readTime: string;
   content: string;
 };
 
 const posts: Record<string, Post> = {
-  "scaling-verse-music-sync": {
-    title: "How I scaled Verse Music Sync using Firebase",
-    excerpt:
-      "Deep dive into the architecture behind synchronized real-time playback across multiple devices using Firebase Realtime Database and Media3.",
-    date: "2026-07-24",
-    dateDisplay: "July 24, 2026",
-    readTime: "8 min read",
-    content: `
-      <h2>The Challenge of Real-Time Sync</h2>
-      <p>Building Verse required seamless synchronization across multiple devices. When one user pauses a track, the other listeners in the jam session need to experience that pause within milliseconds. Standard REST polling was too slow and resource-heavy.</p>
-
-      <h2>Why Firebase Realtime Database?</h2>
-      <p>I chose Firebase Realtime Database over Firestore for this specific feature because of its low-latency, WebSockets-based architecture. While Firestore is great for user data (and what I used in Progex), Realtime Database excels at syncing small, ephemeral state changes rapidly.</p>
-
-      <h2>Implementation with Media3</h2>
-      <p>Integrating this with Android's Media3 ExoPlayer required careful state management. We had to account for network latency by syncing timestamps relative to a global NTP clock rather than local device time. This ensured that even if a packet was delayed by 50ms, the audio playback remained perfectly in phase.</p>
-    `,
-  },
-  "building-competitive-programming-analytics": {
-    title: "Building a Live Leaderboard for Competitive Programming",
-    excerpt:
-      "Why I chose Firestore over PostgreSQL for real-time analytics in Progex, and the architectural trade-offs involved.",
-    date: "2026-07-10",
-    dateDisplay: "July 10, 2026",
-    readTime: "6 min read",
-    content: `
-      <h2>The Need for Real-Time Rankings</h2>
-      <p>Progex needed to display live leaderboard updates as contest submissions came in. Traditional relational databases require complex polling or triggers to push updates — Firestore's onSnapshot listener made this trivial.</p>
-
-      <h2>Why Firestore over PostgreSQL?</h2>
-      <p>For Progex's analytics layer, Firestore won on three axes: built-in real-time listeners, horizontal scaling without a DBA, and generous free tier for a student project. The trade-off was loss of JOINs and strong consistency — acceptable for a leaderboard where eventual consistency within 100ms is imperceptible.</p>
-
-      <h2>Architectural Lessons</h2>
-      <p>Denormalising the leaderboard document (storing rank, score, and display name together) eliminated read-time fan-out and kept latency under 30ms for 99th percentile reads during peak contest hours. This is a pattern I now apply consistently in any real-time ranked list.</p>
-    `,
-  },
-  "zero-cost-event-management": {
-    title: "Zero-Cost Event Management Backend with Google Sheets",
-    excerpt:
-      "A practical guide to leveraging Google Sheets API and OAuth2 as a free, non-technical-friendly database for college fests.",
-    date: "2026-06-15",
-    dateDisplay: "June 15, 2026",
+  "progex-competitive-analytics": {
+    title: "Progex: Competitive Programming Analytics",
+    excerpt: "A robust Flask application offering analytics for competitive programmers, deployed via Docker and Render.",
+    date: "2026-08-25",
+    dateDisplay: "August 25, 2026",
     readTime: "5 min read",
     content: `
-      <h2>The Problem: No Budget, Real Stakes</h2>
-      <p>Eventify had to manage ticket registrations and QR-code check-ins for 1,200+ attendees across two college fests with zero infrastructure budget. A managed database would cost money the organizing committee didn't have.</p>
-
-      <h2>Google Sheets as a Database</h2>
-      <p>The Google Sheets API v4 with a service account gives you a fully hosted, zero-cost tabular store with a familiar spreadsheet UI for non-technical coordinators. Write throughput is limited (~60 writes/min per sheet), but batching registrations into groups of 10 kept us well under quota.</p>
-
-      <h2>QR Code Ticketing Flow</h2>
-      <p>On registration, the backend generates a signed JWT containing the attendee ID, encodes it as a QR code, and emails it. At check-in, a volunteer scans the QR on a mobile device; the app validates the JWT signature, marks the row as checked-in atomically using Sheets' conditional update, and prevents double-entry. Total infrastructure cost: ₹0.</p>
+      <h2>Analytics for Coders</h2>
+      <p>Progex was built to provide competitive programmers with insightful analytics on their performance. Tracking progress and identifying weak spots is crucial for improving coding skills.</p>
+      <h2>Flask Application Factory</h2>
+      <p>The backend is built using Python and Flask, structured around the Application Factory pattern for better scalability and testing. It keeps the configuration and routing clean and maintainable.</p>
+      <h2>Containerized Deployment</h2>
+      <p>To ensure consistent environments from development to production, Progex is containerized using Docker. It includes a Procfile and render.yaml, making it ready for seamless deployment on platforms like Render.</p>
     `,
   },
+  "building-verse-music-player": {
+    title: "Building Verse: A Real-time Jamming Music Player",
+    excerpt: "Developing a modern Android music player featuring a classic iPod-style click wheel and real-time synchronized playback.",
+    date: "2026-08-20",
+    dateDisplay: "August 20, 2026",
+    readTime: "7 min read",
+    content: `
+      <h2>A Nostalgic Yet Modern UI</h2>
+      <p>Verse combines the nostalgic feel of a classic iPod click wheel with a modern, translucent glassmorphism design. The click wheel isn't just for show; it's a fully functional rotational navigation interface.</p>
+      <h2>Real-time Jam Sessions</h2>
+      <p>The standout feature is 'Jam Sessions', allowing users to create or join real-time chat rooms. When one person plays, pauses, or changes a track, it syncs instantly across all devices in the room using Firebase Realtime Database.</p>
+      <h2>Technical Implementation</h2>
+      <p>Built as a native Android application using Kotlin, Verse utilizes Media3/ExoPlayer and a Foreground Service for uninterrupted media playback, ensuring smooth performance even when the app is minimized or the screen is locked.</p>
+    `,
+  },
+  "comprehensive-sql-journey": {
+    title: "My Comprehensive Journey Through SQL",
+    excerpt: "Over 40 documented SQL scripts ranging from basic queries to advanced window functions.",
+    date: "2026-08-15",
+    dateDisplay: "August 15, 2026",
+    readTime: "6 min read",
+    content: `
+      <h2>From SELECT to Complex Joins</h2>
+      <p>I documented every step of my SQL learning process. It started with simple SELECT statements and WHERE clauses, then naturally progressed into aggregations using GROUP BY and HAVING.</p>
+      <h2>Advanced Querying Techniques</h2>
+      <p>The real power of SQL unlocked when I mastered JOINS (Inner, Left, Right, and Self Joins). I then pushed further into Window Functions (OVER) and various types of Subqueries, including Scalar and Correlated Subqueries.</p>
+      <h2>Practical Problem Solving</h2>
+      <p>The repository contains dozens of practice queries and edge-case explorations, acting as a personal knowledge base for optimizing database queries.</p>
+    `,
+  },
+  "mastering-java-fundamentals": {
+    title: "Mastering Java from Scratch",
+    excerpt: "A structured journey through Java fundamentals, covering core concepts, build tools, and testing.",
+    date: "2026-08-10",
+    dateDisplay: "August 10, 2026",
+    readTime: "5 min read",
+    content: `
+      <h2>Building a Strong Foundation</h2>
+      <p>My Java journey started with the absolute basics: understanding Data Types, Operators, and OOP Classes. Building a strong conceptual foundation was critical before moving on to advanced frameworks.</p>
+      <h2>Modern Build Tools: Maven and Gradle</h2>
+      <p>I quickly realized that managing dependencies manually isn't scalable. I spent significant time learning both Maven and Gradle to understand how enterprise Java applications are built and packaged.</p>
+      <h2>Database Connectivity and Testing</h2>
+      <p>Connecting to databases via JDBC opened up backend possibilities, while learning Unit Testing ensured my code remained robust and bug-free. This repo also includes my preparation materials for TCS interviews.</p>
+    `,
+  }
 };
 
-// ─── generateStaticParams so Next.js pre-renders all slugs at build time ──────
 export function generateStaticParams() {
   return Object.keys(posts).map((slug) => ({ slug }));
 }
 
-// ─── Per-post metadata: unique title, description, OG, Twitter, canonical ─────
 export async function generateMetadata({
   params,
 }: {
@@ -125,7 +128,6 @@ export async function generateMetadata({
   };
 }
 
-// ─── Page component ───────────────────────────────────────────────────────────
 export default async function BlogPost({
   params,
 }: {
@@ -136,7 +138,6 @@ export default async function BlogPost({
 
   if (!post) notFound();
 
-  // Article JSON-LD — unique per post
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -170,12 +171,10 @@ export default async function BlogPost({
 
   return (
     <div className="relative min-h-screen flex flex-col">
-      {/* Article JSON-LD injected in <head> via script tag */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-
       <Navbar />
       <main className="flex-1 flex flex-col items-center">
         <Section id="blog-post" className="pt-32 pb-24 w-full max-w-3xl">
