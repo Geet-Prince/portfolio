@@ -163,8 +163,8 @@ export default function Projects() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-105 motion-reduce:transform-none"
-                priority={index < 2}
-                loading={index < 2 ? undefined : "lazy"}
+                priority={index === 0}
+                loading={index === 0 ? undefined : "lazy"}
               />
               <div className="absolute top-5 left-5 z-20 flex items-center gap-2">
                 <div className="px-3 py-1.5 bg-(--bg)/90 backdrop-blur-md rounded-full text-(--fg) text-xs font-bold tracking-wide shadow-lg border border-(--border-subtle)">

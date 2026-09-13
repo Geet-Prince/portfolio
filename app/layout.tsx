@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Prince Raj",
       images: [
         {
-          url: "/og-image.jpg",
+          url: "/og-image.webp",
           width: 1200,
           height: 630,
           alt: "Prince Raj - Software Engineer & Data Scientist"
@@ -67,7 +67,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Prince Raj (geetprince) | Software Engineer & Data Scientist",
       description: "Portfolio of Prince Raj (geetprince), Software Engineer based in India.",
-      images: ["/og-image.jpg"],
+      images: ["/og-image.webp"],
     },
     alternates: {
       canonical: "https://geetprince.me/",
