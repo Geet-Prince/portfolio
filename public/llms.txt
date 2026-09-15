@@ -1,0 +1,47 @@
+# Prince Raj — geetprince.me
+
+> Backend and Full Stack Software Engineer specializing in scalable architecture and modern web experiences. Based in Greater Noida, India.
+
+Prince Raj (GitHub: Geet-Prince, username: geetprince) is a software engineer focused on Java/Spring Boot backends, Android development with Kotlin, and full-stack web with Next.js and React.
+
+## About
+
+- Personal site: https://geetprince.me/
+- GitHub: https://github.com/Geet-Prince/
+- LinkedIn: https://www.linkedin.com/in/geetprince/
+- LeetCode: https://leetcode.com/u/geet-prince/
+- Email: prince.raj.ds@gmail.com
+- Certifications: AWS Certified Cloud Practitioner
+
+## Featured Projects
+
+- **Verse** — Collaborative music streaming Android app with real-time Jam Sessions via Firebase Realtime Database, ExoPlayer media playback, and Spring Boot REST API backend. Built with Kotlin, MVVM, Material Design. Live: https://verse.geetprince.me/
+- **Progex** — Competitive programming analytics and social platform. Built with Flask (Python), Firebase, HTML/CSS/JavaScript. Aggregates LeetCode/Codeforces stats.
+
+## Skills
+
+- **Languages**: Java, Kotlin, Python, SQL, JavaScript, TypeScript
+- **Backend**: Spring Boot, Flask, REST APIs, JWT, Firebase Auth
+- **Databases**: MySQL, PostgreSQL, MongoDB, Firebase, Supabase
+- **Frontend**: React, Next.js, Tailwind CSS, Framer Motion
+- **Mobile**: Android (Kotlin), MVVM, ExoPlayer, Media3
+- **Cloud & DevOps**: AWS, Linux, Git, GitHub
+- **Data Science**: NumPy, Pandas, Matplotlib, Feature Engineering
+- **CS Fundamentals**: DSA (400+ problems solved), DBMS, Operating Systems, Computer Networks
+
+## Sections on Site
+
+- **Hero / Home**: https://geetprince.me/#hero — Introduction and current focus
+- **About**: https://geetprince.me/#about — Background and bio
+- **Journey / Experience**: https://geetprince.me/#experience — Timeline of education and growth
+- **Technical Arsenal**: https://geetprince.me/#skills — Tabbed skills breakdown
+- **Milestones / Achievements**: https://geetprince.me/#achievements — Key stats and AWS certification
+- **Featured Work / Projects**: https://geetprince.me/#projects — Project cards with GitHub links and architecture details
+- **All Repositories**: https://geetprince.me/#projects — Live-synced GitHub repo grid with search and filters
+- **Contact**: https://geetprince.me/#contact — Email, LinkedIn, GitHub, LeetCode links
+
+## Status
+
+- Actively seeking: Backend Engineering Internships
+- Currently building: Verse v2.3 (music streaming platform)
+- Learning: Distributed Systems

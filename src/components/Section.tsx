@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { cn } from '../lib/utils';
 
 interface SectionProps {
@@ -18,14 +18,11 @@ export default function Section({ id, className, children }: SectionProps) {
         className
       )}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+      <div
+        className="opacity-0 animate-[fade-in-up_0.6s_ease-out_forwards]"
       >
         {children}
-      </motion.div>
+      </div>
     </section>
   );
 }

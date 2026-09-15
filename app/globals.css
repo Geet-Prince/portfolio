@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
-  
+
   --color-background: var(--bg);
   --color-foreground: var(--fg);
   --color-muted: var(--muted);
@@ -19,32 +19,48 @@
   --text-fluid-h2: clamp(2rem, 4vw + 1rem, 3.5rem);
   --text-fluid-h3: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
   --text-fluid-p: clamp(1rem, 1.5vw + 0.5rem, 1.125rem);
+
+  /* CSS keyframe animation tokens */
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @layer base {
   :root {
     /* Soft Sepia/Oatmeal Light Mode (Eye Comfort) */
-    --bg: #EAE3D9;        /* Soft, low-glare beige instead of bright white */
-    --fg: #3B342C;        /* Soft dark brown for text */
-    --muted: #82786D;
+    --bg: #EAE3D9;
+    --fg: #3B342C;
+    /* Darkened from #82786D to pass 4.5:1 WCAG AA on #EAE3D9 background */
+    --muted: #5C544C;
     --border-subtle: #D8CEBE;
-    --accent: #FF6B6B;    /* Restored original vibrant red */
-    
-    --card: #F2EADF;      /* Slightly lighter beige for cards */
+    --accent: #FF6B6B;
+
+    --card: #F2EADF;
     --card-fg: #3B342C;
-    --surface: #E0D7C9;   /* Slightly darker for surfaces */
+    --surface: #E0D7C9;
     --surface-fg: #3B342C;
     --surface-hover: #D6CCBE;
   }
-  
+
   .dark {
     /* Warmer Dark Mode (Eye Comfort) */
     --bg: #181614;
-    --fg: #EFE4D3; /* Soft cream color instead of pure white */
-    --muted: #A39B92;
+    --fg: #EFE4D3;
+    /* Brightened from #A39B92 to pass 4.5:1 WCAG AA on #181614 background */
+    --muted: #C0B7AE;
     --border-subtle: #322E2A;
     --accent: #FF6B6B;
-    
+
     --card: #1F1D1B;
     --card-fg: #EFE4D3;
     --surface: #262320;
@@ -67,7 +83,7 @@
     background-image: radial-gradient(circle at 1px 1px, var(--border-subtle) 1px, transparent 0);
     background-size: 32px 32px;
   }
-  
+
   /* Masking the dot grid slightly so it fades at the edges */
   body::before {
     content: '';
@@ -81,11 +97,10 @@
     z-index: -1;
     transition: background 0.15s ease-out;
   }
-  
-  /* Ultra-Premium Staggered Theme Transition */
-  /* Background changes first */
+
+  /* Staggered Theme Transition — box-shadow intentionally excluded (non-composited) */
   div, section, article, nav, header, footer {
-    transition: background-color 0.15s ease-out 0.02s, border-color 0.15s ease-out 0.04s, box-shadow 0.15s ease-out;
+    transition: background-color 0.15s ease-out 0.02s, border-color 0.15s ease-out 0.04s;
   }
 
   /* Typography and Icons swap slightly after */
