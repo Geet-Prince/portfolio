@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Section from './Section';
-import { motion } from 'framer-motion';
+
 import { cn } from '../lib/utils';
 
 import { timeline } from '../data/experience';
@@ -16,13 +16,10 @@ export default function Experience() {
 
         <div className="relative border-l-2 border-(--border-subtle) ml-4 md:ml-6 pl-8 md:pl-12 space-y-12">
           {timeline.map((item, idx) => (
-            <motion.div 
+            <div 
               key={`${item.year}-${idx}`}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="relative"
+              className="relative opacity-0 animate-[fade-in_0.5s_ease-out_forwards]"
+              style={{ animationDelay: `${idx * 0.1}s` }}
             >
               <div 
                 className={cn(
@@ -46,7 +43,7 @@ export default function Experience() {
                   {item.title}
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
